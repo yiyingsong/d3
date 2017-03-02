@@ -1,0 +1,126 @@
+ <!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+#myDiv1 {
+    width: 1238px;
+    height: 628px;
+    margin-left: -40px;
+}
+
+#myDiv2 {
+  margin-left: 150px;
+}
+
+</style>
+        <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        </head>
+        <body>
+        <div id="myDiv1"></div>
+        <div id="myDiv2", style="width: 960px; height: 600px;"> </div>
+        <script>
+
+        // the map
+        Plotly.d3.csv('Happiness2016.csv', function(err, rows){
+        function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+        }
+  
+        var data = [{
+              type: 'choropleth',
+              locationmode: 'USA-states',
+              locations: unpack(rows, 'Code'),
+              z: unpack(rows, 'Total Score'),
+              text: unpack(rows, 'State'),
+              zmin: 0,
+              zmax: 100,
+              colorscale: [
+                [0, 'rgb(255,241,235)'], [0.4, 'rgb(255,241,235)'],
+                [0.5, 'rgb(255,201,177)'], [0.55, 'rgb(255,147,98)'],
+                [0.6, 'rgb(255,93,20)'], [1, 'rgb(196,61,0)']
+              ],
+            colorbar: {
+              title: 'Score of happiness',
+              thickness: 10
+            },
+            marker: {
+              line:{
+                color: 'rgb(255,255,255)',
+                width: 1.5
+              }
+            }
+          }];
+
+        console.log(data.locations);
+        var layout = {
+          title: '2016’s Happiest States in the United States',
+          geo:{
+            scope: 'usa',
+            showlakes: true,
+            lakecolor: 'rgb(255,255,255)'
+          }
+        };
+
+        Plotly.plot(myDiv1, data, layout, {showLink: false, displaylogo: false, displaylogo: false, displayModeBar: false});
+
+        });
+
+        // the scatter plot
+        var trace1 = {
+        x: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50],
+        y: [4,1,11,2,3,24,14,12,9,5,7,20,17,10,19,15,13,21,6,22,25,16,23,26,27,31,18,33,32,28,36,30,38,29,35,34,39,42,44,37,41,40,47,45,43,49,46,50,48,47],
+        mode: 'markers',
+        // mode: 'markers + text',
+        type: 'scatter',
+        name: 'Emotional well-being ranking vs. Happiness ranking',
+        //text: ['A-1', 'A-2', 'A-3', 'A-4', 'A-5'],
+        textposition: 'top center',
+        textfont: {
+          family:  'Raleway, sans-serif'
+        },
+        marker: { size: 12 }
+      };
+
+      var trace2 = {
+      x: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50],
+      y: [1,9,2,20,18,3,5,8,6,36,21,13,19,22,17,26,38,7,41,23,4,38,15,40,43,33,37,27,30,31,16,35,32,44,42,46,29,25,12,50,14,24,10,28,49,11,34,45,48,47],
+      mode: 'markers',
+      // mode: 'markers + text',
+      type: 'scatter',
+      name: 'Work environment ranking vs. Happiness ranking',
+      //text: ['B-a', 'B-b', 'B-c', 'B-d', 'B-e'],
+      textfont : {
+      family:'Times New Roman'
+      },
+      textposition: 'bottom center',
+      marker: { size: 12 }
+};
+
+  var data = [ trace1, trace2 ];
+
+  var layout = { 
+  xaxis: {
+    range: [ 0, 55 ] 
+  },
+  yaxis: {
+    range: [0, 55]
+  },
+  legend: {
+    y: 0.5,
+    yref: 'paper',
+    font: {
+      family: 'Arial, sans-serif',
+      size: 15,
+      color: 'grey',
+    }
+  },
+  title:'Relationship between Emotional well-being, Work environment and Happiness rankings'
+};
+
+Plotly.newPlot('myDiv2', data, layout, {showLink: false, displayModeBar: false});
+
+
+        </script>
+        </body>
