@@ -37,9 +37,9 @@
               zmin: 0,
               zmax: 100,
               colorscale: [
-                [0, 'rgb(255,241,235)'], [0.4, 'rgb(255,241,235)'],
-                [0.5, 'rgb(255,201,177)'], [0.55, 'rgb(255,147,98)'],
-                [0.6, 'rgb(255,93,20)'], [1, 'rgb(196,61,0)']
+                [0, 'rgb(255,237,229)'], [0.4, 'rgb(255,201,177)'],
+                [0.5, 'rgb(255,166,127)'], [0.55, 'rgb(255,95,25)'],
+                [0.6, 'rgb(228, 70, 0)'], [1, 'rgb(178, 54, 0)']
               ],
             colorbar: {
               title: 'Score of happiness',
@@ -55,7 +55,7 @@
 
         console.log(data.locations);
         var layout = {
-          title: '2016’s Happiest States in the United States',
+          title: '<b>2016’s Happiest States in the United States</b>',
           geo:{
             scope: 'usa',
             showlakes: true,
@@ -75,7 +75,7 @@
         // mode: 'markers + text',
         type: 'scatter',
         name: 'Emotional well-being ranking vs. Happiness ranking',
-        //text: ['A-1', 'A-2', 'A-3', 'A-4', 'A-5'],
+        text: ['Utah','Minnesota','North Dakota','Hawaii','Colorado','Idaho','Iowa','Nebraska','South Dakota','California','New Hampshire','Washington','Wyoming','Vermont','Wisconsin','Massachusetts','Connecticut','Delaware','New Jersey','Virginia','Montana','Maryland','Kansas','Illinois','New York','Rhode Island','Alaska','Texas','North Carolina','Arizona','Oregon','Maine','Pennsylvania','Florida','Nevada','Georgia','South Carolina','Ohio','Indiana','New Mexico','Missouri','Michigan','Oklahoma','Tennessee','Louisiana','Arkansas','Mississippi','Kentucky','Alabama','West Virginia'],
         textposition: 'top center',
         textfont: {
           family:  'Raleway, sans-serif'
@@ -90,7 +90,7 @@
       // mode: 'markers + text',
       type: 'scatter',
       name: 'Work environment ranking vs. Happiness ranking',
-      //text: ['B-a', 'B-b', 'B-c', 'B-d', 'B-e'],
+      text: ['Utah','Minnesota','North Dakota','Hawaii','Colorado','Idaho','Iowa','Nebraska','South Dakota','California','New Hampshire','Washington','Wyoming','Vermont','Wisconsin','Massachusetts','Connecticut','Delaware','New Jersey','Virginia','Montana','Maryland','Kansas','Illinois','New York','Rhode Island','Alaska','Texas','North Carolina','Arizona','Oregon','Maine','Pennsylvania','Florida','Nevada','Georgia','South Carolina','Ohio','Indiana','New Mexico','Missouri','Michigan','Oklahoma','Tennessee','Louisiana','Arkansas','Mississippi','Kentucky','Alabama','West Virginia'],
       textfont : {
       family:'Times New Roman'
       },
@@ -102,9 +102,11 @@
 
   var layout = { 
   xaxis: {
+  	title: 'Happiness Ranking',
     range: [ 0, 55 ] 
   },
   yaxis: {
+  	title: 'Emotional Well-being/Work Environment Ranking',
     range: [0, 55]
   },
   legend: {
@@ -116,8 +118,9 @@
       color: 'grey',
     }
   },
-  title:'Relationship between Emotional well-being, Work environment and Happiness rankings'
+  title:'<b>Relationship between Emotional well-being, Work environment and Happiness rankings </b> <br> (Click on dataset name on the right to see the data, select an area to zoom in)',
 };
+
 
 Plotly.newPlot('myDiv2', data, layout, {showLink: false, displayModeBar: false});
 
